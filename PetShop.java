@@ -24,7 +24,13 @@ public class PetShop {
             case 2:
                 addPets();         
                 break;
-            case 3: 
+            case 3:
+                searchPetsByName();
+                break;
+            case 4:
+                searchPetsByAge();
+                break;    
+            case 5: 
                 System.out.println("Thanks for coming to Dominic's Pet Shop!");
                 System.exit(0);
             }
@@ -35,7 +41,9 @@ public class PetShop {
         System.out.println("What would you like to do?");
         System.out.println("1) View all pets");
         System.out.println("2) Add more pets");
-        System.out.println("3) Exit program");
+        System.out.println("3) Search pets by name");
+        System.out.println("4) Search pets by age");
+        System.out.println("5) Exit program");
         System.out.print("Your choice: ");
         int answer = input.nextInt();
         return answer;
@@ -67,6 +75,34 @@ public class PetShop {
         printTableHeader();
         printTableRow();
         printTableFooter();
+    }
+
+    public static void searchPetsByName(){      
+        System.out.print("Enter a name to search for: ");
+        String name = input.next();
+        printTableHeader();
+        System.out.println();
+        for (int i = 0; i<petCount; i++){
+            if (pets[i].getName().equals(name)){   
+                System.out.printf("|%3d |%-10s|%4d |",i, pets[i].getName(), pets[i].getAge()); 
+                System.out.println();                
+            }
+        }
+        System.out.printf("+----------------------+ %n%d rows in set.%n",petCount);
+    }
+
+    public static void searchPetsByAge(){
+        System.out.print("Enter an age to search for: ");
+        int age = input.nextInt();
+        printTableHeader();
+        System.out.println();
+        for (int i = 0; i<petCount; i++){
+            if (pets[i].getAge() == age){   
+                System.out.printf("|%3d |%-10s |%4d |",i, pets[i].getName(), pets[i].getAge()); 
+                System.out.println();                
+            }
+        }
+        System.out.printf("+----------------------+ %n%d rows in set.%n",petCount);
     }
         
     public static void printTableHeader(){
